@@ -125,6 +125,44 @@ const countEvenUpto2 = (num) => Math.floor(num / 2);
 
 /* Exercise 3: write a program to check whether a given array of integers is sorted in ascending order. */
 
+const isSortedAscending1 = (arr) => {
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] > arr[i + 1]) {
+      return false;
+    }
+  }
+  return true;
+};
+
 /* Exercise 4: write a program to get the largest even number from an array of integers. */
 
-/* Exercise 5: write a program to replace the first digit in a string (should contains at least digit) with $ character. */
+// Method 1:
+const largestEvenInt1 = (arr) => {
+  let largestNum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] % 2 === 0 && arr[i] > largestNum) {
+      largestNum = arr[i];
+    }
+  }
+  return largestNum;
+};
+
+// Method 2:
+const largestEvenInt2 = (arr) => {
+  return Math.max(...arr.filter((num) => num % 2 === 0));
+};
+
+/* Exercise 5: write a program to replace the first digit in a string (should contains at least a digit) with $ character. */
+
+// Method 1:
+const replaceFirstDigit1 = (str) => str.replace(/[0-9]/, "$");
+
+// Method 2: Using a for loop
+const replaceFirstDigit2 = (str) => {
+  for (let i = 0; i < str.length; i++) {
+    if (/[0-9]/.test(str[i])) {
+      return str.slice(0, i) + "$" + str.slice(i + 1);
+    }
+  }
+  return str;
+};
