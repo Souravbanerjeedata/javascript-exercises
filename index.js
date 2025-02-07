@@ -166,3 +166,48 @@ const replaceFirstDigit2 = (str) => {
   }
   return str;
 };
+
+//////////////////////////////////////////Day 4//////////////////////////////////////////////
+
+/*Exercise 1: given a year, report if it is a leap year.*/
+
+// Method 1:
+const isLeapYear1 = (year) => {
+  if (year % 4 !== 0) return false;
+  if (year % 100 !== 0) return true;
+  if (year % 400 !== 0) return false;
+  return true;
+};
+
+// Method 2:
+const isLeapYear2 = (year) => {
+  if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+/*Exercise 2: write a program to compare two objects to determine if the first one contains the same properties as the second one (whice may also have addiional properties).*/
+// Method 1: Using a for loop
+const containsSameProperties1 = (obj1, obj2) => {
+  for (let key in obj2) {
+    if (!(key in obj1)) {
+      return false;
+    }
+  }
+  return true;
+};
+
+// Method 2: Using Object.keys and every
+const containsSameProperties2 = (obj1, obj2) => {
+  return Object.keys(obj2).every((key) => obj1[key]);
+};
+
+/*Exercise 3: write a js program to convert a comma-separated values (csv) string to a 2D array. a new line indicates a new row in the array.*/
+
+const convertArray = (str) => str.split("\n").map((row) => row.split(","));
+
+/*Exercise 4: write js program to generate a random hexadecimal color code.*/
+
+/*Exercise 5: write a function that return true if the provided predicate function returns true for all elements in a collection, false otherwise.*/
