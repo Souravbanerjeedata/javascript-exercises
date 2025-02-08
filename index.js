@@ -210,4 +210,33 @@ const convertArray = (str) => str.split("\n").map((row) => row.split(","));
 
 /*Exercise 4: write js program to generate a random hexadecimal color code.*/
 
+// Method 1:
+const randomHexColor1 = () => {
+  const letters = "0123456789abcdef";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
+
+// Method 2:
+
+const randomHexNumber = () => Math.floor(Math.random() * 16).toString(16);
+const randomHexColor2 = () =>
+  "#" + Array.from({ length: 6 }).map(randomHexNumber).join("");
+
 /*Exercise 5: write a function that return true if the provided predicate function returns true for all elements in a collection, false otherwise.*/
+
+//Method 1:
+const isEveryElem1 = (arr, fn) => {
+  for (let i = 0; i < arr.length; i++) {
+    if (!fn(arr[i])) {
+      return false;
+    }
+  }
+  return true;
+};
+
+// Method 2:
+const isEveryElem2 = (arr, fn) => arr.every(fn);
