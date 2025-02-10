@@ -200,13 +200,16 @@ const containsSameProperties1 = (obj1, obj2) => {
 };
 
 // Method 2: Using Object.keys and every
-const containsSameProperties2 = (obj1, obj2) => {
-  return Object.keys(obj2).every((key) => obj1[key]);
-};
+const containsSameProperties2 = (obj1, obj2) =>
+  Object.keys(obj2).every(
+    (key) => obj1.hasOwnProperty(key) && obj1[key] === obj2[key]
+  );
 
 /*Exercise 3: write a js program to convert a comma-separated values (csv) string to a 2D array. a new line indicates a new row in the array.*/
 
-const convertArray = (str) => str.split("\n").map((row) => row.split(","));
+function csvToArray(csvString) {
+  return csvString.split("\n").map((row) => row.split(","));
+}
 
 /*Exercise 4: write js program to generate a random hexadecimal color code.*/
 
@@ -225,6 +228,24 @@ const randomHexColor1 = () => {
 const randomHexNumber = () => Math.floor(Math.random() * 16).toString(16);
 const randomHexColor2 = () =>
   "#" + Array.from({ length: 6 }).map(randomHexNumber).join("");
+
+// Mehod 3:
+const randomHexCode3 = () =>
+  "#" +
+  Math.floor(Math.random() * 16777215)
+    .toString(16)
+    .padStart(6, "0");
+
+// Method 4: receiving array of multiple hexcolors by inputting count
+const randomHexCode4 = (count) =>
+  Array.from(
+    { length: count },
+    () =>
+      "#" +
+      Math.floor(Math.random() * 16777215)
+        .toString(16)
+        .padStart(6, "0")
+  );
 
 /*Exercise 5: write a function that return true if the provided predicate function returns true for all elements in a collection, false otherwise.*/
 
