@@ -261,3 +261,61 @@ const isEveryElem1 = (arr, fn) => {
 
 // Method 2:
 const isEveryElem2 = (arr, fn) => arr.every(fn);
+
+//////////////////////////////////////////Day 5//////////////////////////////////////////////
+
+/*Exercise 1: write a js function that returns a passed string with letters in alphabetical order.
+example string: 'webmaster'
+expected output: 'abeemrstw'
+*/
+
+const alphabetOrder = (str) => str.split("").sort().join("");
+
+/*Exercise 2: write a js function that accepts a string as a parameter and counts the number of vowels within the string.*/
+
+// Method 1: for loop
+const countVowels = (str) => {
+  const vowels = "aeiou";
+  let count = 0;
+  for (let char of str) {
+    if (vowels.includes(char)) {
+      count++;
+    }
+  }
+  return count;
+};
+
+// Method 2: Using regular expression
+const countVowels2 = (str) => {
+  if (!str) return 0;
+  const matches = str.match(/[aeiou]/gi);
+  return matches ? matches.length : 0;
+};
+
+// Method 3: Using filter
+const countVowels3 = (str, letters = ["a", "e", "i", "o", "u"]) =>
+  str.split("").filter((s) => letters.indexOf(s) > -1).length;
+
+/*Exercise 3: write a js function to convert an amount to coins.
+Example input: 46 and possible coins 25, 10, 5, 2, 1
+output: 25, 10, 10, 1*/
+
+const convertToCoins = (amount, coins) => {
+  let result = [];
+  for (let coin of coins) {
+    while (amount >= coin) {
+      result.push(coin);
+      amount -= coin;
+    }
+  }
+  return result;
+};
+// const coins = [25, 10, 5, 2, 1];
+// console.log(convertToCoins(46, coins));
+
+/*Exercise 4: write a js function to extract unique characters from a string.*/
+
+/* Exercise 5: write a js function to find the first not repeated character.
+example string: 'abacddbec'
+expected output: 'e'
+*/
