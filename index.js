@@ -274,13 +274,12 @@ const alphabetOrder = (str) => str.split("").sort().join("");
 /*Exercise 2: write a js function that accepts a string as a parameter and counts the number of vowels within the string.*/
 
 // Method 1: for loop
-const countVowels = (str) => {
+
+const countVowels1 = (str) => {
   const vowels = "aeiou";
   let count = 0;
-  for (let char of str) {
-    if (vowels.includes(char)) {
-      count++;
-    }
+  for (let char of vowels) {
+    if (str.includes(char)) count++;
   }
   return count;
 };
@@ -293,6 +292,7 @@ const countVowels2 = (str) => {
 };
 
 // Method 3: Using filter
+
 const countVowels3 = (str, letters = ["a", "e", "i", "o", "u"]) =>
   str.split("").filter((s) => letters.indexOf(s) > -1).length;
 
@@ -300,7 +300,7 @@ const countVowels3 = (str, letters = ["a", "e", "i", "o", "u"]) =>
 Example input: 46 and possible coins 25, 10, 5, 2, 1
 output: 25, 10, 10, 1*/
 
-const convertToCoins = (amount, coins) => {
+const convertToCoins = (amount, coins = [25, 10, 5, 2, 1]) => {
   let result = [];
   for (let coin of coins) {
     while (amount >= coin) {
@@ -310,12 +310,61 @@ const convertToCoins = (amount, coins) => {
   }
   return result;
 };
-// const coins = [25, 10, 5, 2, 1];
-// console.log(convertToCoins(46, coins));
 
 /*Exercise 4: write a js function to extract unique characters from a string.*/
+
+//Method 1: for loop
+const getUniqueCharacters1 = (str) => {
+  let unique = [];
+  const newArr = str.split("");
+  for (let char of newArr) {
+    if (!unique.includes(char)) {
+      unique.push(char);
+    }
+  }
+  return unique;
+};
+
+// Method 2: using set object
+const getUniqueCharacters2 = (str) => [...new Set(str)].join("");
 
 /* Exercise 5: write a js function to find the first not repeated character.
 example string: 'abacddbec'
 expected output: 'e'
 */
+
+// Method 1: Using a Hash Map (Object or Map)
+function firstNonRepeatedCharacter1(str) {
+  const charCount = new Map();
+
+  // Count the frequency of each character
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i];
+    charCount.set(char, (charCount.get(char) || 0) + 1);
+  }
+
+  // Find the first character with frequency 1
+  for (let i = 0; i < str.length; i++) {
+    if (charCount.get(str[i]) === 1) {
+      return str[i];
+    }
+  }
+
+  return null;
+}
+
+//Method 2: Using indexOf and lastIndexOf
+function firstNonRepeatedCharacter2(str) {
+  for (let i = 0; i < str.length; i++) {
+    // If indexOf and lastIndexOf are the same, it means it's not repeated
+    if (str.indexOf(str[i]) === str.lastIndexOf(str[i])) {
+      return str[i];
+    }
+  }
+
+  return null;
+}
+
+// Method 3:
+const firstNonRepeatedCharacter3 = (str) =>
+  [...str].find((c) => str.indexOf(c) === str.lastIndexOf(c)) || null;
