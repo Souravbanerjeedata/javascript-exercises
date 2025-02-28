@@ -291,10 +291,15 @@ const countVowels2 = (str) => {
   return matches ? matches.length : 0;
 };
 
-// Method 3: Using filter
+// Method 3: Using filter & indexOf
 
 const countVowels3 = (str, letters = ["a", "e", "i", "o", "u"]) =>
   str.split("").filter((s) => letters.indexOf(s) > -1).length;
+
+// Method 4: Using filter & includes
+
+const countVowels4 = (str, vowels = ["a", "e", "i", "o", "u"]) =>
+  [...str].filter((c) => vowels.includes(c)).length;
 
 /*Exercise 3: write a js function to convert an amount to coins.
 Example input: 46 and possible coins 25, 10, 5, 2, 1
@@ -302,6 +307,10 @@ output: 25, 10, 10, 1*/
 
 const convertToCoins = (amount, coins = [25, 10, 5, 2, 1]) => {
   let result = [];
+
+  // Sort coins in descending order to maximize larger coin usage first
+  coins.sort((a, b) => b - a);
+
   for (let coin of coins) {
     while (amount >= coin) {
       result.push(coin);
